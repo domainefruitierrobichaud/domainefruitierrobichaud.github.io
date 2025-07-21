@@ -38,7 +38,7 @@
       text-align: center;
     }
 
-    /* Menu hamburger animé */
+    /* Menu hamburger */
     .menu-toggle {
       position: absolute;
       top: 20px;
@@ -49,6 +49,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      z-index: 1001;
     }
 
     .menu-toggle span {
@@ -58,12 +59,27 @@
       transition: 0.3s ease;
     }
 
+    /* Navigation menu */
     nav {
-      display: none;
-      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
       background-color: var(--vert-moyen);
+      flex-direction: column;
       text-align: center;
-      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 1000;
+    }
+
+    nav.show {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
     nav a {
@@ -76,10 +92,6 @@
 
     nav a:hover {
       background-color: #406b40;
-    }
-
-    nav.show {
-      display: flex;
     }
 
     main {
@@ -108,8 +120,12 @@
 
       nav {
         display: flex !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        position: static;
         flex-direction: row;
         justify-content: center;
+        transform: none !important;
       }
 
       nav a {
