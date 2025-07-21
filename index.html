@@ -56,22 +56,35 @@
       height: 4px;
       background-color: white;
       border-radius: 2px;
-      transition: 0.3s ease;
+      transition: 0.4s ease;
     }
 
-    /* Navigation menu */
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Navigation */
     nav {
-      position: absolute;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background-color: var(--vert-moyen);
+      display: none;
       flex-direction: column;
+      background-color: var(--vert-moyen);
       text-align: center;
       opacity: 0;
       pointer-events: none;
       transform: translateY(-10px);
       transition: opacity 0.4s ease, transform 0.4s ease;
+      width: 100%;
+      position: absolute;
+      top: 70px;
+      left: 0;
       z-index: 1000;
     }
 
@@ -85,9 +98,9 @@
     nav a {
       color: var(--blanc);
       text-decoration: none;
-      padding: 12px;
+      padding: 15px;
       font-weight: bold;
-      transition: background 0.3s;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     nav a:hover {
@@ -120,15 +133,16 @@
 
       nav {
         display: flex !important;
+        flex-direction: row;
+        justify-content: center;
         opacity: 1 !important;
         pointer-events: auto !important;
         position: static;
-        flex-direction: row;
-        justify-content: center;
         transform: none !important;
       }
 
       nav a {
+        border: none;
         padding: 15px 20px;
       }
     }
@@ -153,7 +167,7 @@
 <body>
 
 <header>
-  <div class="menu-toggle" onclick="toggleMenu()">
+  <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
     <span></span>
     <span></span>
     <span></span>
@@ -182,6 +196,9 @@
 <script>
   function toggleMenu() {
     const menu = document.getElementById('menu');
+    const toggle = document.getElementById('menuToggle');
+
+    toggle.classList.toggle('active');
     menu.classList.toggle('show');
   }
 </script>
