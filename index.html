@@ -5,18 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Domaine Fruitier Robichaud</title>
   <style>
+    :root {
+      --vert-fonce: #3b6e3b;
+      --vert-moyen: #2f4f2f;
+      --blanc: #ffffff;
+      --gris-clair: #f8f8f8;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f8f8;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--gris-clair);
       color: #2b2b2b;
     }
 
     header {
-      background-color: #3b6e3b;
-      color: white;
+      background-color: var(--vert-fonce);
+      color: var(--blanc);
       padding: 20px;
       position: relative;
+      overflow: hidden;
+      animation: fadeInDown 1s ease-out;
     }
 
     h1 {
@@ -24,39 +38,40 @@
       text-align: center;
     }
 
-    /* Menu hamburger */
+    /* Menu hamburger animé */
     .menu-toggle {
       position: absolute;
       top: 20px;
       left: 20px;
       cursor: pointer;
+      width: 30px;
+      height: 25px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 25px;
-      height: 20px;
     }
 
     .menu-toggle span {
-      display: block;
-      height: 3px;
+      height: 4px;
       background-color: white;
       border-radius: 2px;
+      transition: 0.3s ease;
     }
 
     nav {
       display: none;
       flex-direction: column;
-      background-color: #2f4f2f;
-      padding: 10px 0;
+      background-color: var(--vert-moyen);
       text-align: center;
+      animation: fadeIn 0.5s ease forwards;
     }
 
     nav a {
-      color: white;
+      color: var(--blanc);
       text-decoration: none;
-      padding: 10px;
+      padding: 12px;
       font-weight: bold;
+      transition: background 0.3s;
     }
 
     nav a:hover {
@@ -68,23 +83,25 @@
     }
 
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 50px 20px;
+      animation: fadeIn 1.5s ease;
     }
 
     footer {
-      background-color: #3b6e3b;
-      color: white;
+      background-color: var(--vert-fonce);
+      color: var(--blanc);
       text-align: center;
       padding: 20px;
+      animation: fadeInUp 1s ease-out;
     }
 
     a {
-      color: #3b6e3b;
+      color: var(--vert-fonce);
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: 700px) {
       .menu-toggle {
         display: none;
       }
@@ -98,6 +115,22 @@
       nav a {
         padding: 15px 20px;
       }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -121,8 +154,8 @@
 <main>
   <section>
     <h2>Bienvenue</h2>
-    <p>Le Domaine Fruitier Robichaud est un lieu dédié à la culture de bleuets, situé à Roxton Pond, au Québec. Nous offrons une expérience authentique, simple et de qualité dans un cadre naturel.</p>
-    <p>Parcourez les sections ci-dessus pour découvrir nos photos, consulter l’horaire d’ouverture, en apprendre plus sur notre histoire, ou nous contacter directement.</p>
+    <p>Le Domaine Fruitier Robichaud est une entreprise familiale située à Roxton Pond, dédiée à la culture de bleuets. Nous vous accueillons dans un environnement paisible pour vivre une expérience simple, locale et naturelle.</p>
+    <p>Explorez les différentes sections pour découvrir nos produits, notre histoire et les informations utiles pour votre visite.</p>
   </section>
 </main>
 
