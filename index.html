@@ -29,7 +29,7 @@
       color: var(--blanc);
       padding: 20px;
       position: relative;
-      overflow: hidden;
+      z-index: 1000;
       animation: fadeInDown 1s ease-out;
     }
 
@@ -38,22 +38,23 @@
       text-align: center;
     }
 
-    /* Menu hamburger */
+    /* Hamburger Menu */
     .menu-toggle {
       position: absolute;
       top: 20px;
       left: 20px;
-      cursor: pointer;
       width: 30px;
       height: 25px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
       z-index: 1001;
     }
 
     .menu-toggle span {
       height: 4px;
+      width: 100%;
       background-color: white;
       border-radius: 2px;
       transition: 0.4s ease;
@@ -68,37 +69,37 @@
     }
 
     .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
+      transform: rotate(-45deg) translate(5px, -5px);
     }
 
-    /* Navigation */
     nav {
-      display: none;
-      flex-direction: column;
       background-color: var(--vert-moyen);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
       text-align: center;
       opacity: 0;
       pointer-events: none;
       transform: translateY(-10px);
       transition: opacity 0.4s ease, transform 0.4s ease;
-      width: 100%;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
     }
 
     nav.show {
-      display: flex;
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
+      max-height: 300px; /* max visible height */
     }
 
     nav a {
       color: var(--blanc);
       text-decoration: none;
       padding: 15px;
+      display: block;
       font-weight: bold;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
@@ -135,10 +136,11 @@
         display: flex !important;
         flex-direction: row;
         justify-content: center;
+        position: static;
         opacity: 1 !important;
         pointer-events: auto !important;
-        position: static;
         transform: none !important;
+        max-height: none !important;
       }
 
       nav a {
@@ -197,9 +199,8 @@
   function toggleMenu() {
     const menu = document.getElementById('menu');
     const toggle = document.getElementById('menuToggle');
-
-    toggle.classList.toggle('active');
     menu.classList.toggle('show');
+    toggle.classList.toggle('active');
   }
 </script>
 
