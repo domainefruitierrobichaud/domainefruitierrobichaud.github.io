@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Domaine Fruitier Robichaud</title>
   <style>
     :root {
@@ -12,14 +13,13 @@
       --gris-clair: #f8f8f8;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
-      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--gris-clair);
       color: #2b2b2b;
     }
@@ -27,37 +27,42 @@
     header {
       background-color: var(--vert-fonce);
       color: var(--blanc);
-      padding: 20px;
       position: relative;
-      z-index: 1000;
-      animation: fadeInDown 1s ease-out;
+      padding: 1.25rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    h1 {
+    header h1 {
       margin: 0;
-      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
     }
 
-    /* Hamburger Menu */
+    /* Hamburger Button */
     .menu-toggle {
+      all: unset;
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 1.25rem;
+      left: 1rem;
       width: 30px;
-      height: 25px;
+      height: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 1100;
     }
 
     .menu-toggle span {
+      display: block;
       height: 4px;
       width: 100%;
-      background-color: white;
+      background: var(--blanc);
       border-radius: 2px;
-      transition: 0.4s ease;
+      transition: all 0.3s ease;
+      transform-origin: center;
     }
 
     .menu-toggle.active span:nth-child(1) {
@@ -72,59 +77,46 @@
       transform: rotate(-45deg) translate(5px, -5px);
     }
 
+    /* Navigation */
     nav {
-      background-color: var(--vert-moyen);
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
-      flex-direction: column;
-      text-align: center;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      background-color: var(--vert-moyen);
       max-height: 0;
       overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      z-index: 1000;
     }
 
-    nav.show {
+    nav.open {
+      max-height: 300px;
       opacity: 1;
       pointer-events: auto;
-      transform: translateY(0);
-      max-height: 300px; /* max visible height */
     }
 
     nav a {
       color: var(--blanc);
       text-decoration: none;
       padding: 15px;
-      display: block;
       font-weight: bold;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s ease;
     }
 
-    nav a:hover {
+    nav a:first-child {
+      border-top: none;
+    }
+
+    nav a:hover,
+    nav a:focus {
       background-color: #406b40;
-    }
-
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 50px 20px;
-      animation: fadeIn 1.5s ease;
-    }
-
-    footer {
-      background-color: var(--vert-fonce);
-      color: var(--blanc);
-      text-align: center;
-      padding: 20px;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    a {
-      color: var(--vert-fonce);
     }
 
     @media (min-width: 700px) {
@@ -133,49 +125,87 @@
       }
 
       nav {
-        display: flex !important;
+        position: static;
+        max-height: none;
+        opacity: 1;
+        pointer-events: auto;
         flex-direction: row;
         justify-content: center;
-        position: static;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: none !important;
-        max-height: none !important;
+        background-color: transparent;
       }
 
       nav a {
         border: none;
-        padding: 15px 20px;
+        padding: 1rem 1.5rem;
+      }
+
+      nav a:hover,
+      nav a:focus {
+        background-color: rgba(255, 255, 255, 0.1);
       }
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      animation: fadeIn 1s ease forwards;
     }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    main h2 {
+      color: var(--vert-fonce);
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    footer {
+      background-color: var(--vert-fonce);
+      color: var(--blanc);
+      text-align: center;
+      padding: 1.5rem;
+      font-weight: 600;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Menu"
+    aria-expanded="false"
+    aria-controls="primary-navigation"
+  >
     <span></span>
     <span></span>
     <span></span>
-  </div>
+  </button>
   <h1>Domaine Fruitier Robichaud</h1>
-  <nav id="menu">
+  <nav id="primary-navigation" aria-hidden="true">
     <a href="photos.html">Photos</a>
     <a href="horaire.html">Horaire</a>
     <a href="biographie.html">Biographie</a>
@@ -196,12 +226,24 @@
 </footer>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById('menu');
-    const toggle = document.getElementById('menuToggle');
-    menu.classList.toggle('show');
-    toggle.classList.toggle('active');
-  }
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('primary-navigation');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.contains('open');
+    nav.classList.toggle('open');
+    menuToggle.classList.toggle('active');
+    nav.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+    menuToggle.setAttribute('aria-expanded', !isOpen);
+  });
+
+  // Accessibility: allow toggle via Enter/Space
+  menuToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      menuToggle.click();
+    }
+  });
 </script>
 
 </body>
