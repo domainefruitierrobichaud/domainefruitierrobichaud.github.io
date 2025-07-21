@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Domaine Fruitier Robichaud</title>
   <style>
     :root {
@@ -19,7 +18,7 @@
 
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--gris-clair);
       color: #2b2b2b;
     }
@@ -38,9 +37,9 @@
       margin: 0;
       font-size: 1.5rem;
       font-weight: 700;
+      padding-left: 50px;
     }
 
-    /* Hamburger Button */
     .menu-toggle {
       all: unset;
       position: absolute;
@@ -77,7 +76,6 @@
       transform: rotate(-45deg) translate(5px, -5px);
     }
 
-    /* Navigation */
     nav {
       position: absolute;
       top: 100%;
@@ -193,13 +191,7 @@
 <body>
 
 <header>
-  <button
-    class="menu-toggle"
-    id="menuToggle"
-    aria-label="Menu"
-    aria-expanded="false"
-    aria-controls="primary-navigation"
-  >
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">
     <span></span>
     <span></span>
     <span></span>
@@ -217,7 +209,7 @@
   <section>
     <h2>Bienvenue</h2>
     <p>Le Domaine Fruitier Robichaud est une entreprise familiale située à Roxton Pond, dédiée à la culture de bleuets. Nous vous accueillons dans un environnement paisible pour vivre une expérience simple, locale et naturelle.</p>
-    <p>Explorez les différentes sections pour découvrir nos produits, notre histoire et les informations utiles pour votre visite.</p>
+    <p>Explorez les différentes sections pour découvrir notre horaire, notre histoire et les informations utiles pour votre visite.</p>
   </section>
 </main>
 
@@ -226,24 +218,23 @@
 </footer>
 
 <script>
-  const menuToggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('primary-navigation');
+  const menuToggle = document.getElementById('menuToggle')
+  const nav = document.getElementById('primary-navigation')
 
   menuToggle.addEventListener('click', () => {
-    const isOpen = nav.classList.contains('open');
-    nav.classList.toggle('open');
-    menuToggle.classList.toggle('active');
-    nav.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
-    menuToggle.setAttribute('aria-expanded', !isOpen);
-  });
+    const isOpen = nav.classList.contains('open')
+    nav.classList.toggle('open')
+    menuToggle.classList.toggle('active')
+    nav.setAttribute('aria-hidden', isOpen ? 'true' : 'false')
+    menuToggle.setAttribute('aria-expanded', !isOpen)
+  })
 
-  // Accessibility: allow toggle via Enter/Space
-  menuToggle.addEventListener('keydown', (e) => {
+  menuToggle.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      menuToggle.click();
+      e.preventDefault()
+      menuToggle.click()
     }
-  });
+  })
 </script>
 
 </body>
